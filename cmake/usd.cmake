@@ -14,8 +14,18 @@
 # limitations under the License.
 #
 function(init_usd)
+    # USD 25.x installs its Python modules in lib/python, USD 26.x in Lib/site-packages.
+    # The directory is relative to the USD install, so it also works for MAYAUSD_TO_USD_RELATIVE_PATH.
+    if(EXISTS "${PXR_USD_LOCATION}/lib/python")
+        set(MAYAUSD_USD_PYTHON_RELDIR "lib/python" CACHE INTERNAL "USD Python modules, relative to the USD install")
+    elseif(EXISTS "${PXR_USD_LOCATION}/Lib/site-packages")
+        set(MAYAUSD_USD_PYTHON_RELDIR "Lib/site-packages" CACHE INTERNAL "USD Python modules, relative to the USD install")
+    else()
+        set(MAYAUSD_USD_PYTHON_RELDIR "lib/python" CACHE INTERNAL "USD Python modules, relative to the USD install")
+    endif()
+
     # Adjust PYTHONPATH, PATH
-    mayaUsd_append_path_to_env_var("PYTHONPATH" "${PXR_USD_LOCATION}/lib/python")
+    mayaUsd_append_path_to_env_var("PYTHONPATH" "${PXR_USD_LOCATION}/${MAYAUSD_USD_PYTHON_RELDIR}")
     if(WIN32)
         mayaUsd_append_path_to_env_var("PATH" "${PXR_USD_LOCATION}/bin;${PXR_USD_LOCATION}/lib")
     endif()

@@ -426,7 +426,7 @@ finally:
         endif()
         # Inherit any existing PYTHONPATH, but keep it at the end.
         list(APPEND MAYAUSD_VARNAME_PYTHONPATH
-            "${USD_INSTALL_LOCATION}/lib/python")
+            "${USD_INSTALL_LOCATION}/${MAYAUSD_USD_PYTHON_RELDIR}")
         if(IS_WINDOWS)
             list(APPEND MAYAUSD_VARNAME_PATH
                 "${USD_INSTALL_LOCATION}/bin")
