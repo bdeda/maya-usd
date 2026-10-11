@@ -2,9 +2,9 @@
 icons: 
 plug-ins: 
 presets: 
-scripts: lib/python
+scripts: ${MAYAUSD_USD_PYTHON_RELDIR}
 resources: 
-PYTHONPATH+:=lib/python
+PYTHONPATH+:=${MAYAUSD_USD_PYTHON_RELDIR}
 PATH+:=bin
 PATH+:=lib
 PATH+:=plugin/usd

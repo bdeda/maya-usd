@@ -1,0 +1,8 @@
+# An intentionally empty module named like the MayaHydra module that Autodesk's MayaUSD
+# installer registers (in "Autodesk Shared/Modules/maya/<version>/mayausd.mod").
+#
+# MayaHydra is built against Autodesk's own USD. When Maya finds a module of the same
+# name on MAYA_MODULE_PATH it discards the installed one, so this keeps MayaHydra, and
+# the Autodesk USD plugin path it adds, out of a session that runs this build against a
+# different USD version. Without it, USD tries to load Autodesk's plugins into our USD.
++ MAYAHYDRA 0.0.0 ${CMAKE_INSTALL_PREFIX}
